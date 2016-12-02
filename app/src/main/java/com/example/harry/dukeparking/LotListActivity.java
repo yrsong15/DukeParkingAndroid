@@ -12,13 +12,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Calendar;
 
 public class LotListActivity extends AppCompatActivity {
     //key String: lot UID; value String: name, Stirng: capacity
@@ -27,11 +30,13 @@ public class LotListActivity extends AppCompatActivity {
     public SQLiteDatabase lotDb;
     public final static String dbName = "transactionDataBase";
     public final static String transactionTableName = "transactionTable";
+    public BufferedInputStream buffer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lot_list);
         initialize();
+        updateData();
         //processData();
         final List<Lot> lotList = new ArrayList<>(lotMap.values());
         LotListAdapter adapter = new LotListAdapter(lotList,getApplicationContext());
@@ -63,10 +68,42 @@ public class LotListActivity extends AppCompatActivity {
                     cap = Integer.parseInt(row[2]);
                 }
                 else{
-                    cap = -1;
+                    cap = 0;
                 }
                 Lot oneLot = new Lot(row[1],row[0],cap);
-                lotMap.put(row[1],oneLot);
+                lotMap.put(row[1], oneLot);
+            }
+        }
+        catch (IOException ex) {
+            throw new RuntimeException("Error in reading CSV file: "+ex);
+        }
+        finally {
+            try {
+                inputStream.close();
+            }
+            catch (IOException e) {
+                throw new RuntimeException("Error while closing input stream: "+e);
+            }
+        }
+    }
+
+    public void updateData(){
+        Calendar c = Calendar.getInstance();
+        int hours = c.get(Calendar.HOUR_OF_DAY);
+        int rawId = getResources().getIdentifier("period" + hours, "raw", getPackageName());
+        InputStream inputStream = getResources().openRawResource(rawId);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        try {
+            String csvLine;
+            int jump = 0;
+            while ((csvLine = reader.readLine()) != null) {
+                if(jump!=0){
+                    String[] row = csvLine.split(",");
+                    Log.i("Test", row[0] + "      "+row[1]);
+                    Lot oneLot = lotMap.get(row[0]);
+                    oneLot.setCurrent(Integer.parseInt(row[1]));
+                }
+                jump = 1;
             }
         }
         catch (IOException ex) {
@@ -154,7 +191,7 @@ public class LotListActivity extends AppCompatActivity {
 //        private static final String DATE_EXIT = "date_exit";
 //
 //        public dbHelper(Context context) {
-//            super(context, DATABASE_NAME, null, 1);
+//            super(context, DATABASE_NAME, null, period1);
 //        }
 //
 //        // Creating Tables

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Harry on 10/20/16.
+ * Created by Harry on period10/period20/period16.
  */
 public class LotListAdapter extends BaseAdapter implements ListAdapter {
     private List<Lot> lotList;
@@ -54,7 +54,11 @@ public class LotListAdapter extends BaseAdapter implements ListAdapter {
         lotNameView.setText(lotList.get(position).getName());
 
         TextView lotInfoView = (TextView)view.findViewById(R.id.lot_info);
-        lotInfoView.setText("Slots available: "+ (lotList.get(position).getCapacity()-lotList.get(position).getCurrent()));
+        double percentAvailable = 100;
+        if(lotList.get(position).getCapacity()!=0){
+            percentAvailable = 100*((double)(lotList.get(position).getCapacity()-lotList.get(position).getCurrent())/(double)lotList.get(position).getCapacity());
+        }
+        lotInfoView.setText((int)percentAvailable+"% Available");
 
         return view;
     }

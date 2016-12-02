@@ -1,7 +1,7 @@
 package com.example.harry.dukeparking;
 
 /**
- * Created by Harry on 11/10/16.
+ * Created by Harry on period11/period10/period16.
  */
 public class Lot {
     private String Id;
@@ -19,7 +19,7 @@ public class Lot {
         this.Id = Id;
         this.Name = Name;
         this.Capacity = Capacity;
-        this.Current = -1;
+        this.Current = 0;
         this.Addr = "Default Addr";
     }
 

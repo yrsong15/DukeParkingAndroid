@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Harry on 11/10/16.
+ * Created by Harry on period11/period10/period16.
  */
 public class LotDetailActivity extends AppCompatActivity {
     private Lot lot;
