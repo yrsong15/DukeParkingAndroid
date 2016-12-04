@@ -1,4 +1,4 @@
-# DukeParkingAndroid
+# Duke Parking Android
 Android application built with PostgreSQL that tracks number of open spots for each parking lot on Duke University campus. 
 
 ### Members (in alphabetic order)
