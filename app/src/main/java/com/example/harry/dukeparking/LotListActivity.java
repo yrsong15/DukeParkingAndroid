@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.io.BufferedInputStream;
@@ -70,8 +71,10 @@ public class LotListActivity extends AppCompatActivity {
                 else{
                     cap = 0;
                 }
-                Lot oneLot = new Lot(row[1],row[0],cap);
-                lotMap.put(row[1], oneLot);
+                if(cap!=0) {
+                    Lot oneLot = new Lot(row[1], row[0], cap);
+                    lotMap.put(row[1], oneLot);
+                }
             }
         }
         catch (IOException ex) {

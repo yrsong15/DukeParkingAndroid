@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -57,6 +58,16 @@ public class LotListAdapter extends BaseAdapter implements ListAdapter {
         double percentAvailable = 100;
         if(lotList.get(position).getCapacity()!=0){
             percentAvailable = 100*((double)(lotList.get(position).getCapacity()-lotList.get(position).getCurrent())/(double)lotList.get(position).getCapacity());
+        }
+        ImageView indicator = (ImageView) view.findViewById(R.id.indicator);
+        if(percentAvailable>=75){
+            indicator.setImageResource(R.drawable.green);
+        }
+        else if(percentAvailable<75&&percentAvailable>25){
+            indicator.setImageResource(R.drawable.yellow);
+        }
+        else if(percentAvailable <= 25){
+            indicator.setImageResource(R.drawable.red);
         }
         lotInfoView.setText((int)percentAvailable+"% Available");
 

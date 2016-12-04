@@ -28,4 +28,12 @@
         android:text="Available spot"
         android:gravity="center" />
 
+    <ImageView
+        android:id="@+id/indicator"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="30dp"
+        android:src="@drawable/green"
+        android:gravity="center"/>
+
 </LinearLayout>

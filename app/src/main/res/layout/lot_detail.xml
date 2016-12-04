@@ -29,28 +29,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lotAddressLbl"
-        android:layout_gravity="center"
-        android:textSize="30sp"
-        android:textColor="#6e686c"
-        android:textStyle="bold"
-        android:text="Parking Lot Address"
-        android:layout_marginTop="40dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address"
-        android:id="@+id/lot_detail_addr"
-        android:textSize="25sp"
-        android:textColor="#6e686c"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/lotCapacityLbl"
         android:layout_gravity="center"
         android:textSize="30sp"
@@ -78,7 +56,7 @@
         android:textSize="30sp"
         android:textColor="#6e686c"
         android:textStyle="bold"
-        android:text="Parking Lot Available Slot"
+        android:text="Available Slots"
         android:layout_marginTop="40dp" />
 
     <TextView

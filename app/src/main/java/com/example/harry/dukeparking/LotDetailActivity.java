@@ -23,11 +23,9 @@ public class LotDetailActivity extends AppCompatActivity {
         lot = LotListActivity.lotMap.get(getIntent().getStringExtra(LotListActivity.LOT_ID));
         TextView name = (TextView)findViewById(R.id.lot_detail_name);
         TextView capacity = (TextView)findViewById(R.id.lot_detail_capacity);
-        TextView addr = (TextView)findViewById(R.id.lot_detail_addr);
         TextView available = (TextView)findViewById(R.id.lot_detail_available);
         name.setText(lot.getName());
         capacity.setText(Integer.toString(lot.getCapacity()));
         available.setText(Integer.toString(lot.getCapacity()-lot.getCurrent()));
-        addr.setText(lot.getAddr());
     }
 }
